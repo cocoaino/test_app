@@ -1,24 +1,31 @@
-# README
+# アプリケーション名
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーション概要
 
-Things you may want to cover:
+# データベース設計
 
-* Ruby version
+## users table
 
-* System dependencies
+|Column             |Type   |Options                   |
+|-------------------|-------|--------------------------|
+|nickname           |string |null: false               |
+|email              |string |null: false, unique: true |
+|encrypted_password |string |null: false               |
 
-* Configuration
+### Association
 
-* Database creation
+* has_many :items
 
-* Database initialization
+## item table
 
-* How to run the test suite
+|Column              |Type    |Options                        |
+|--------------------|--------|-------------------------------|
+|user_id             |integer |null: false, foreign_key: true |
+|name                |string  |null: false                    |
+|price               |integer |null: false                    |
+|category_id         |integer |null: false                    |
+|status_id           |integer |null: false                    |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
 
-* Deployment instructions
-
-* ...
+* belongs_to :user
